@@ -1,0 +1,21 @@
+# Maintainer: openOODA-tools <ops@openooda.org>
+pkgname=oojoin-bin
+_pkgname=oojoin
+pkgver=0.1.0
+pkgrel=1
+pkgdesc="Relational database join operator merging lines of sorted files on common fields."
+arch=('x86_64')
+url="https://github.com/openOODA-tools/oojoin"
+license=('Apache-2.0')
+depends=('glibc')
+provides=('oojoin')
+conflicts=('oojoin')
+source_x86_64=("${url}/releases/download/v${pkgver}/oojoin-linux-x86_64"
+               "uninstall.sh::https://raw.githubusercontent.com/openOODA-tools/${_pkgname}/v${pkgver}/uninstall.sh")
+sha256sums_x86_64=('SKIP'
+                   'SKIP')
+
+package() {
+    install -Dm755 "${srcdir}/oojoin-linux-x86_64" "${pkgdir}/usr/bin/oojoin"
+    install -Dm755 uninstall.sh "${pkgdir}/usr/bin/oojoin-uninstall"
+}
